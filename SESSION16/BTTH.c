@@ -5,30 +5,31 @@
 #include <string.h>
 
 // CẤU TRÚC 1 KHÓA HỌC
-typedef struct  {
+typedef struct {
     int id;
     char title[50];
     int credit;
-}Course;
+} Course;
 
 // CẤU TRÚC DANH SÁCH LIÊN KẾT ĐƠN
-typedef struct  SNode {
+typedef struct SNode {
     Course course;
     int data;
     struct SNode *next;
-}SNode;
+} SNode;
 
 // CẤU TRÚC DANH DÁCH LIÊN KẾT ĐÔI
-typedef struct  DNode {
+typedef struct DNode {
     Course course;
     struct DNode *next;
     struct DNode *prev;
-}DNode;
-SNode* head = NULL;
+} DNode;
+
+SNode *head = NULL;
 // TẠO HÀM KIỂM TRA ID KHÔNG ĐƯỢC TRÙNG
 int checkId(int id) {
     // Duyệt từng node trong danh sách liên kết đơn, đi kiểm tra với id người dùng nhập
-    SNode* temp = head;
+    SNode *temp = head;
     while (temp != NULL) {
         if (temp->course.id == id) {
             return 1;
@@ -37,6 +38,7 @@ int checkId(int id) {
     }
     return 0;
 }
+
 // HÀM ĐI THÊM KHÓA HOC
 void addCourse() {
     Course courseValue;
@@ -44,9 +46,10 @@ void addCourse() {
     do {
         printf("nhap ID: ");
         scanf("%d", &courseValue.id);
-    }while (checkId(courseValue.id));
+    } while (checkId(courseValue.id));
     // loại bộ nhớ đệm
     getchar();
+
     // Nhập tên
     printf("nhap ten khoa hoc: ");
     fgets(courseValue.title, 50, stdin);
@@ -56,7 +59,7 @@ void addCourse() {
     printf("nhap so tin chi ");
     scanf("%d", &courseValue.credit);
     // KHỞI TẠO VÙNG NHỚ CHO 1 NODE
-    SNode* newNode = (SNode*)malloc(sizeof(SNode));
+    SNode *newNode = (SNode *) malloc(sizeof(SNode));
     if (newNode == NULL) {
         printf("cap phat o nho khong thanh cong");
         return;
@@ -66,19 +69,22 @@ void addCourse() {
     head = newNode;
     printf("Them khoa hoc thanh cong: ");
 }
+
 // HÀM HIỂN THỊ DANH SÁCH KHÓA HỌC
 void displayCourse() {
-    SNode* temp = head;
+    SNode *temp = head;
     while (temp != NULL) {
-        printf("ID: %d  | Ten: %s | Tin Chi %d \n", temp->course.id,temp->course.title, temp->course.credit);
+        printf("ID: %d  | Ten: %s | Tin Chi %d \n", temp->course.id, temp->course.title, temp->course.credit);
         temp = temp->next;
     }
 }
+
 int main() {
     int choice;
     do {
         printf("MENU \n");
-        printf("1. Them khoa hoc\n 2. Hien thi danh sach khoa hoc\n 3. Xoa\n 4. Cap nhat khoa hoc\n 5. Danh dau khoa hoc da hoan thanh\n 6. Sap xep\n 7. Tim kiem\n 8. Thoat ");
+        printf(
+            "1. Them khoa hoc\n 2. Hien thi danh sach khoa hoc\n 3. Xoa\n 4. Cap nhat khoa hoc\n 5. Danh dau khoa hoc da hoan thanh\n 6. Sap xep\n 7. Tim kiem\n 8. Thoat ");
         scanf("%d", &choice);
         switch (choice) {
             case 1: {
@@ -97,5 +103,5 @@ int main() {
                 printf("lua chon khong hop le!\n");
             }
         }
-    }while (choice !=8);
+    } while (choice != 8);
 }
