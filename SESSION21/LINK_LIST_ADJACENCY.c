@@ -26,12 +26,12 @@ Node* addAdjacency(int U,int V) {
     // TẠO 1 NỐT MỚI, THÊM VÀO ĐẦU
     Node* newNode = createNode(U);
     // ĐI LIÊN KẾT VỚI PHẦN TỬ BAN ĐẦU
-    newNode->next = adjacency[U];
-    adjacency[U]=newNode;// NEWNODE lúc này sẽ là phần tử đầu
+    newNode->next = adjacency[V];
+    adjacency[V]=newNode;// NEWNODE lúc này sẽ là phần tử đầu
 
     newNode= createNode(V);
-    newNode->next = adjacency[V];// LIÊN KẾT VỚI PHẦN TỬ BAN ĐẦU
-    adjacency[V]=newNode; // newNode bây giờ sẽ thanh phần tu đầu tiên
+    newNode->next = adjacency[U];// LIÊN KẾT VỚI PHẦN TỬ BAN ĐẦU
+    adjacency[U]=newNode; // newNode bây giờ sẽ thanh phần tu đầu tiên
 }
 // HÀM hiển thị liên kết các điểm
 void printAdjacency() {
